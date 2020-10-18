@@ -40,7 +40,14 @@ public class Navigation {
   
   /** Returns the signed minimal angle in degrees from initial angle to destination angle (deg). */
   public static double minimalAngle(double initialAngle, double destAngle) {
-    return 0; // TODO
+    double deltaAngle = destAngle - initialAngle;
+    //
+    if (deltaAngle > 180) {
+      deltaAngle -= 360;
+    } else if (deltaAngle < -180) {
+      deltaAngle += 360;
+    }
+    return deltaAngle;
   }
   
   /** Returns the distance between the two points in tile lengths (feet). */
