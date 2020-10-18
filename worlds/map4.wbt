@@ -66,6 +66,7 @@ TexturedBackground {
 TexturedBackgroundLight {
 }
 DPM-Robot {
+
   hidden position_10_0 -9.857131634144128
   hidden translation_11 3.614377085070508e-06 6.546391983386357e-06 8.739979101446416e-05
   hidden rotation_11 -0.7343547688466411 0.40206216172435627 0.5468720980098855 -1.9665383040778524
@@ -74,7 +75,12 @@ DPM-Robot {
   name "robot(1)"
   translation 0.5385959654104128 0.05442858953793493 0.29286300321266984
   rotation 0.016291782889699787 -0.9982121904865925 0.05750652636209097 1.5732376524650111
+
   children [
+    EV3-Ultrasonic {
+      translation 0 0.037 -0.05
+      rotation -3.3905013482585576e-09 0.7071062811861719 0.7071072811865696 3.14159
+    }
     robot5_base_asm-solid {
       translation 0 -0.014 -0.028
       rotation 1 0 0 -1.57
@@ -89,18 +95,13 @@ DPM-Robot {
       translation 0.031 -0.03 -0.058
       rotation 0 1 0 3.14159
     }
-    EV3-Ultrasonic {
-      name "S1"
-      translation 0 0.037 -0.04
-      rotation 0 0.7103372911591662 0.703861444311775 -3.1012753071795864
-    }
     BallCaster {
-      translation 0 -0.041 0.04
+      translation 0 -0.05 0.039992
       rotation 1 0 0 -1.57
     }
     EV3-LargeMotor {
       name "A"
-      translation -0.05 -0.02 -0.022
+      translation -0.055 -0.026 -0.022008
       rotation 1 0 0 -1.57
       position 8246.916206638634
       children [

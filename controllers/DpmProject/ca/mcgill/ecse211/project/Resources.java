@@ -33,22 +33,22 @@ public class Resources {
   public static final int INVALID_SAMPLE_LIMIT = 20;
   
   /** The wheel radius in meters. */
-  public static final double WHEEL_RAD = 0;
+  public static final double WHEEL_RAD = 0.0215;
   
   /** The robot width in meters. */
-  public static final double BASE_WIDTH = 0;
+  public static final double BASE_WIDTH = 0.1605;
   
   /** The distance between the color sensors and the wheels in meters. */
   public static final double COLOR_SENSOR_TO_WHEEL_DIST = 0;
   
   /** The speed at which the robot moves forward in degrees per second. */
-  public static final int FORWARD_SPEED = 0;
+  public static final int FORWARD_SPEED = 300;
   
   /** The speed at which the robot rotates in degrees per second. */
-  public static final int ROTATE_SPEED = 0;
+  public static final int ROTATE_SPEED = 100;
   
   /** The motor acceleration in degrees per second squared. */
-  public static final int ACCELERATION = 0;
+  public static final int ACCELERATION = 3000;
   
   /** The tile size in meters. Note that 0.3048 m = 1 ft. */
   public static final double TILE_SIZE = 0.3048;
