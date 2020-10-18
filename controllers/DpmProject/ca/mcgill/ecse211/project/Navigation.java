@@ -26,11 +26,11 @@ public class Navigation {
   
   /**
    * Turns the robot with a minimal angle towards the given input angle in degrees, no matter what
-   * its current orientation is. This method is different from {@code turnBy()}.
+   * its current orientation is. This method is different from {@code turnBy()}
    */
   public static void turnTo(double angle) {
-    // TODO
-    // Hint: You can do this in one line by reusing some helper methods declared in this class
+    // odometer.getXyt()[2] = current theta, the initial angle
+    driver.turnBy(minimalAngle(odometer.getXyt()[2], angle));
   }
 
   /** Returns the angle that the robot should point towards to face the destination in degrees. */
