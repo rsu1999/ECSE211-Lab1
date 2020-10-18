@@ -14,11 +14,11 @@ public class Navigation {
   
   /** Travels to the given destination. */
   public static void travelTo(Point destination) {
-    double currX = Odometer.getOdometer().getXyt()[0];
-    double currY = Odometer.getOdometer().getXyt()[1];
+    double currX = odometer.getXyt()[0];
+    double currY = odometer.getXyt()[1];
     Point myP = new Point(currX, currY);
     double dist = distanceBetween(myP, destination);
-    moveStraightFor(dist);
+    driver.moveStraightFor(dist);
     // TODO
     // Think carefully about how you would integrate line detection here, if necessary
     // Don't forget that destination.x and destination.y are in feet, not meters
@@ -60,38 +60,42 @@ public class Navigation {
     distY = p1.y - p2.y;
     distT = Math.sqrt(distX * distX + distY * distY);
     
-    return distT; // TODO
+    return distT;
   }
+  
+  
+  
+  
   
   // TODO Bring Navigation-related helper methods from Labs 2 and 3 here
   // You can also add other helper methods here, but remember to document them with Javadoc (/**)!
   
-  /**
-   * Moves the robot straight for the given distance.
-   * 
-   * @param distance in feet (tile sizes), may be negative
-   */
-  
-  public static void moveStraightFor(double distance) {
-    leftMotor.setSpeed(FORWARD_SPEED);
-    rightMotor.setSpeed(FORWARD_SPEED);
-    
-    leftMotor.rotate(convertDistance(distance), true);
-    rightMotor.rotate(convertDistance(distance), false);
- 
-  }
-  
-  
-  /**
-   * Converts input distance to the total rotation of each wheel needed to cover that distance.
-   * 
-   * @param distance the input distance in feet
-   * @return the wheel rotations necessary to cover the distance
-   */
-  public static int convertDistance(double distance) {
-    distance *= 0.3048;
-    int rot = (int) (180 * distance / (Math.PI * WHEEL_RAD) * TILE_SIZE);
-    return rot;
-  }
+//  /**
+//   * Moves the robot straight for the given distance.
+//   * 
+//   * @param distance in feet (tile sizes), may be negative
+//   */
+//  
+//  public static void moveStraightFor(double distance) {
+//    leftMotor.setSpeed(FORWARD_SPEED);
+//    rightMotor.setSpeed(FORWARD_SPEED);
+//    
+//    leftMotor.rotate(convertDistance(distance), true);
+//    rightMotor.rotate(convertDistance(distance), false);
+// 
+//  }
+//  
+//  
+//  /**
+//   * Converts input distance to the total rotation of each wheel needed to cover that distance.
+//   * 
+//   * @param distance the input distance in feet
+//   * @return the wheel rotations necessary to cover the distance
+//   */
+//  public static int convertDistance(double distance) {
+//    distance *= 0.3048;
+//    int rot = (int) (180 * distance / (Math.PI * WHEEL_RAD) * TILE_SIZE);
+//    return rot;
+//  }
   
 }
