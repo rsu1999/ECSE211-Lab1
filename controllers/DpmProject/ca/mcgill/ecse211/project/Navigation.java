@@ -40,7 +40,15 @@ public class Navigation {
   
   /** Returns the distance between the two points in tile lengths (feet). */
   public static double distanceBetween(Point p1, Point p2) {
-    return 0; // TODO
+    double distX;
+    double distY;
+    double distT;
+    
+    distX = p1.x - p2.x;
+    distY = p1.y - p2.y;
+    distT = Math.sqrt(distX * distX + distY * distY);
+    
+    return distT; // TODO
   }
   
   // TODO Bring Navigation-related helper methods from Labs 2 and 3 here
