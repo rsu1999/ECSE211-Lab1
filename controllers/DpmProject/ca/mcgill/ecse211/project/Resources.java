@@ -56,6 +56,9 @@ public class Resources {
   /** The odometer. */
   public static Odometer odometer = Odometer.getOdometer();
   
+  /** The driver. */
+  public static Driver driver = Driver.getDriver();
+  
   // Hardware resources
 
   /** The left motor. */
