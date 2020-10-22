@@ -52,6 +52,8 @@ public class Driver {
     int turn = convertAngle(angle);
     //Negative speed for the right motor since we want the robot to turn clockwise when angle > 0
     // and counterclockwise when angle < 0
+    leftMotor.setSpeed(ROTATE_SPEED);
+    rightMotor.setSpeed(ROTATE_SPEED);
     leftMotor.rotate(turn, true);
     rightMotor.rotate(-turn, false);
   }
@@ -69,15 +71,13 @@ public class Driver {
   
   
   /**
-   * Converts input distance to the total rotation of each wheel needed to cover that distance.
    * 
-   * @param distance the input distance in feet
+   * Converts input distance to the total rotation of each wheel needed to cover that distance.
+   * @param distance the input distance in m
    * @return the wheel rotations necessary to cover the distance
    */
   public static int convertDistance(double distance) {
-    distance *= 0.3048;
-    int rot = (int) (180 * distance / (Math.PI * WHEEL_RAD) * TILE_SIZE);
-    return rot;
+    return (int) (180 * distance / (Math.PI * WHEEL_RAD));
   }
   
 

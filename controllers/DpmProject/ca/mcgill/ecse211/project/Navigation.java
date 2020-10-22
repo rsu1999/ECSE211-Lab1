@@ -1,7 +1,7 @@
 package ca.mcgill.ecse211.project;
 
 import static ca.mcgill.ecse211.project.Resources.*;
-
+import java.util.ArrayList;
 import ca.mcgill.ecse211.playingfield.Point;
 
 /**
@@ -14,14 +14,17 @@ public class Navigation {
   
   /** Travels to the given destination. */
   public static void travelTo(Point destination) {
-    double currX = odometer.getXyt()[0];
-    double currY = odometer.getXyt()[1];
+    double currX = odometer.getXyt()[0] / TILE_SIZE;
+    System.out.println("CurrX : " + currX);
+    double currY = odometer.getXyt()[1] / TILE_SIZE;
+    System.out.println("CurrY : " + currY);
     Point myP = new Point(currX, currY);
-    double dist = distanceBetween(myP, destination);
+    double thetaDegrees = getDestinationAngle(myP, destination);
+    turnTo(thetaDegrees);
+    // divide by tile_size to convert to m
+    double dist = distanceBetween(myP, destination) * TILE_SIZE; 
     driver.moveStraightFor(dist);
-    // TODO
-    // Think carefully about how you would integrate line detection here, if necessary
-    // Don't forget that destination.x and destination.y are in feet, not meters
+    LightLocalizer.calibrate();
   }
   
   /**
@@ -30,12 +33,27 @@ public class Navigation {
    */
   public static void turnTo(double angle) {
     // odometer.getXyt()[2] = current theta, the initial angle
+    System.out.println("CurrTheta : " + odometer.getXyt()[2]);
     driver.turnBy(minimalAngle(odometer.getXyt()[2], angle));
   }
 
   /** Returns the angle that the robot should point towards to face the destination in degrees. */
   public static double getDestinationAngle(Point current, Point destination) {
-    return 0; // TODO
+    double diffY = destination.y - current.y;
+    double diffX = destination.x - current.x;
+    System.out.println("diffX : " + diffX + ", diffY : " + diffY);
+    double tanTheta = diffY / diffX;
+    double theta = Math.atan(tanTheta);
+    double thetaDegrees = theta * 180 / Math.PI;
+    System.out.println(thetaDegrees);
+    if (diffX < 0 && diffY < 0) {
+      thetaDegrees += 180;
+    } else if (diffY < 0) {
+      thetaDegrees += 360;
+    } else if (diffX < 0) {
+      thetaDegrees += 180;
+    }
+    return thetaDegrees;
   }
   
   /** Returns the signed minimal angle in degrees from initial angle to destination angle (deg). */
@@ -62,40 +80,5 @@ public class Navigation {
     
     return distT;
   }
-  
-  
-  
-  
-  
-  // TODO Bring Navigation-related helper methods from Labs 2 and 3 here
-  // You can also add other helper methods here, but remember to document them with Javadoc (/**)!
-  
-//  /**
-//   * Moves the robot straight for the given distance.
-//   * 
-//   * @param distance in feet (tile sizes), may be negative
-//   */
-//  
-//  public static void moveStraightFor(double distance) {
-//    leftMotor.setSpeed(FORWARD_SPEED);
-//    rightMotor.setSpeed(FORWARD_SPEED);
-//    
-//    leftMotor.rotate(convertDistance(distance), true);
-//    rightMotor.rotate(convertDistance(distance), false);
-// 
-//  }
-//  
-//  
-//  /**
-//   * Converts input distance to the total rotation of each wheel needed to cover that distance.
-//   * 
-//   * @param distance the input distance in feet
-//   * @return the wheel rotations necessary to cover the distance
-//   */
-//  public static int convertDistance(double distance) {
-//    distance *= 0.3048;
-//    int rot = (int) (180 * distance / (Math.PI * WHEEL_RAD) * TILE_SIZE);
-//    return rot;
-//  }
   
 }

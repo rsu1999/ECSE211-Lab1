@@ -2,7 +2,7 @@ package ca.mcgill.ecse211.project;
 
 import static ca.mcgill.ecse211.project.Resources.*;
 import static simlejos.ExecutionController.waitUntilNextStep;
-
+import java.util.ArrayList;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -55,10 +55,12 @@ public class Odometer implements Runnable {
   private static final int LEFT = 0;
   private static final int RIGHT = 1;
 
+  
+  private static ArrayList<Double> torque = new ArrayList<Double>();
 
   /** Default constructor of this class. It cannot be accessed externally. */
   private Odometer() {
-    setXyt(TILE_SIZE / 2, TILE_SIZE / 2, 0);
+    setXyt(TILE_SIZE, TILE_SIZE, 0);
   }
 
   /** Returns the Odometer Object. Use this method to obtain an instance of Odometer. */
@@ -244,5 +246,28 @@ public class Odometer implements Runnable {
       lock.unlock();
     }
   }
+  
+  /** Clear the history of torque. */
+  public void resetTorque(ArrayList<Double> torque) {
+    torque.clear();
+  }
+  
+  /** Append the newest torque value. */
+  public void appendTorque(ArrayList<Double> torque) {
+    double newEntry = (leftMotor.getTorque() + rightMotor.getTorque()) / 2;
+    torque.add(newEntry);
+  }
+  
+  /** Compute the average torque value. */
+  public double computeTorque(ArrayList<Double> torque) {
+    double avg = 0;
+    for (int i = 0; i < torque.size(); i++) {
+      avg += torque.get(i);
+    }
+    avg /= torque.size();
+    return avg;
+  }
+  
+  
 
 }

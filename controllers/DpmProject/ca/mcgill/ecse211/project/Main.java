@@ -28,7 +28,6 @@ public class Main {
    * Each vector entry has a number and a point array, where the first point is the vector head and
    * the second is its tail. To access these properties in your code, see the main method.
    * 
-   * <p>Example: Block number 1 → [(1, 3), (1, 5)]
    */
   public static Map<Integer, Point[]> vectors;
   
@@ -61,6 +60,19 @@ public class Main {
     
     // TODO Determine which block number to print here based on the measurements taken above
     System.out.println("The heaviest block is...");
+    
+    Point A0 = new Point(2, 2.5);
+    Point A1 = new Point(2, 6);
+    Point B0 = new Point(4, 1.5);
+    Point B1 = new Point(4, 6);
+    Point C0 = new Point(6, 7);
+    Point C1 = new Point(6, 3);
+    Navigation.travelTo(A0);
+    Navigation.travelTo(A1);
+    Navigation.travelTo(B0);
+    Navigation.travelTo(B1);
+    Navigation.travelTo(C0);
+    Navigation.travelTo(C1);
     
   }
 

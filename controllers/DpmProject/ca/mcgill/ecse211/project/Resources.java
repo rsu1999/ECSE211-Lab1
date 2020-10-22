@@ -7,6 +7,7 @@ import simlejos.hardware.port.SensorPort;
 import simlejos.hardware.sensor.EV3ColorSensor;
 import simlejos.hardware.sensor.EV3UltrasonicSensor;
 import simlejos.robotics.RegulatedMotor;
+import simlejos.robotics.SampleProvider;
 
 /**
  * Class for static resources (things that stay the same throughout the entire program execution),
@@ -70,7 +71,10 @@ public class Resources {
   /** The ultrasonic sensor. */
   public static final EV3UltrasonicSensor usSensor = new EV3UltrasonicSensor(SensorPort.S1);
   
+  /** The right color sensor. */
+  //public static final EV3ColorSensor colorSensor = new EV3ColorSensor(SensorPort.S2);
+  public static final SampleProvider colorSensorR = new EV3ColorSensor(SensorPort.S2).getRedMode();
   /** The left color sensor. */
-  public static final EV3ColorSensor colorSensor = new EV3ColorSensor(SensorPort.S2);
+  public static final SampleProvider colorSensorL = new EV3ColorSensor(SensorPort.S3).getRedMode();
   
 }
